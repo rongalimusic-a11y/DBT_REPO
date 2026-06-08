@@ -1,5 +1,17 @@
 WITH CTE AS (
-    SELECT STARTED_AT FROM {{source('demo','bike')}}
+select
+STARTED_AT,
+DATE(STARTED_AT) AS DATE_STARTED_AT,
+HOUR(STARTED_AT) AS HOUR_STARTED_AT,
+{{ day_type('STARTED_AT') }} AS DAY_TYPE,
+{{ get_season('STARTED_AT') }}  AS STATION_OF_YEAR
+from
+{{ ref('stg_bike') }}
+--where TRY_TO_TIMESTAMP(STARTED_AT,'MM/DD/YYYY HH24:MI:SS') IS NOT NULL
 )
 
-select * from CTE;
+select 
+*
+from CTE
+
+
