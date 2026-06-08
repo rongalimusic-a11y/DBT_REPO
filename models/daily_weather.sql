@@ -7,7 +7,7 @@ pressure,
 humidity,
 clouds
 
-     from {{ source('demo', 'weather') }} limit 10
+     from {{ source('demo', 'weather') }} 
 ),
 daily_weather_agg as (
     select daily_weather, weather,

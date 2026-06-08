@@ -1,10 +1,10 @@
 {% macro get_season(x) %}
 
-CASE WHEN MONTH(TO_TIMESTAMP({{x}},'MM/DD/YYYY HH24:MI:SS')) in (12,1,2)
+CASE WHEN MONTH({{x}}) in (12,1,2)
     THEN 'WINTER'
-    WHEN MONTH(TO_TIMESTAMP({{x}},'MM/DD/YYYY HH24:MI:SS')) in (3,4,5)
+    WHEN MONTH({{x}}) in (3,4,5)
     THEN 'SPRING'
-    WHEN MONTH(TO_TIMESTAMP({{x}},'MM/DD/YYYY HH24:MI:SS')) in (6,7,8)
+    WHEN MONTH({{x}}) in (6,7,8)
     THEN 'SUMMER'
     ELSE 'AUTUMN' 
     END
@@ -14,7 +14,7 @@ CASE WHEN MONTH(TO_TIMESTAMP({{x}},'MM/DD/YYYY HH24:MI:SS')) in (12,1,2)
 {% macro day_type(x) %}
 
 CASE 
-    WHEN DAYNAME(TO_TIMESTAMP({{x}},'MM/DD/YYYY HH24:MI:SS')) in ('Sat','Sun')
+    WHEN DAYNAME({{x}}) in ('Sat','Sun')
         THEN 'WEEKEND'
     ELSE 'BUSINESSDAY'
 END
